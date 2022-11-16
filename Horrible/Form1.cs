@@ -19,6 +19,7 @@ namespace Horrible
             string[] earrings = { "hoop", "stud", "bell", "cherry", "crescent", "cross", "crystal", "flower", "food-themed", "heart", "jack-o'-lantern", "magatama", "orange-shaped", "pill", "pineapple", "planet", "pom pom", "potara", "shell", "skull", "snowflake", "spade", "star", "strawberry", "tassel", "yin yang", "adjusting", "multiple" };
             string[] colors = { "gold", "silver", "aqua", "black", "blue", "brown", "green", "grey", "orange", "pink", "purple", "red", "white", "yellow" };
             string[] licking = { "another's face", "armpit", "breast", "cum", "dildo", "ear", "eye", "finger", "floor", "foot", "hand", "leg", "navel", "neck", "nipple", "panties", "penis", "stomach", "testicle", "weapon" };
+            string[] censor = { "bar", "blank", "blur", "glitch", "heart", "light", "novelty", "character", "text", "flower", "interface" };
 
             try
             {
@@ -70,8 +71,12 @@ namespace Horrible
                     for (int i = 0; i < licking.Length; i++)
                         raw = raw.Replace("licking " + licking[i] + ", ", "");
 
+                    for (int i = 0; i < censor.Length; i++)
+                        raw = raw.Replace(censor[i] + " censor, ", "");
+
                     raw = raw.Replace("licking, ", "");
                     raw = raw.Replace("censored, ", "");
+                    raw = raw.Replace("mosaic censoring, ", "");
                     raw = raw.Replace("tongue out, ", "");
                 }
                 if (checkBox3.Checked)
