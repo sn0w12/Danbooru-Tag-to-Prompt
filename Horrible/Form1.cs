@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Horrible
@@ -21,6 +14,11 @@ namespace Horrible
         private void button1_Click(object sender, EventArgs e)
         {
             string raw = richTextBox1.Text;
+            string[] media = { "twitter", "patreon", "weibo", "deviantart", "instagram", "tumblr", "pixiv", "facebook", "fanbox", "gumroad", "artstation", "lofter", "furaffinity", "youtube", "reddit", "naver", "twitch", "pawoo", "fantia", "plurk" };
+            string[] name = { "artist", "character", "copyright", "company", "group" };
+            string[] earrings = { "hoop", "stud", "bell", "cherry", "crescent", "cross", "crystal", "flower", "food-themed", "heart", "jack-o'-lantern", "magatama", "orange-shaped", "pill", "pineapple", "planet", "pom pom", "potara", "shell", "skull", "snowflake", "spade", "star", "strawberry", "tassel", "yin yang", "adjusting", "multiple" };
+            string[] colors = { "gold", "silver", "aqua", "black", "blue", "brown", "green", "grey", "orange", "pink", "purple", "red", "white", "yellow" };
+            string[] licking = { "another's face", "armpit", "breast", "cum", "dildo", "ear", "eye", "finger", "floor", "foot", "hand", "leg", "navel", "neck", "nipple", "panties", "penis", "stomach", "testicle", "weapon" };
 
             try
             {
@@ -46,6 +44,40 @@ namespace Horrible
                 raw = raw.Replace(" girl", girls);
                 if (raw[0] == ' ')
                     raw = raw.Remove(0, 1);
+
+                if (checkBox1.Checked)
+                {
+                    for (int i = 0; i < name.Length; i++)
+                        raw = raw.Replace(name[i] + " name, ", "");
+
+                    for (int i = 0; i < media.Length; i++)
+                    {
+                        raw = raw.Replace(media[i] + " logo, ", "");
+                        raw = raw.Replace(media[i] + " username, ", "");
+                    } 
+                }
+                if (checkBox2.Checked)
+                {
+                    raw = raw.Replace("jewelry, ", "");
+
+                    for (int i = 0; i < earrings.Length; i++)
+                        raw = raw.Replace(earrings[i] + " earrings, ", "");
+                    for (int i = 0; i < colors.Length; i++)
+                        raw = raw.Replace(colors[i] + " earrings, ", "");
+
+                    raw = raw.Replace("earrings, ", "");
+
+                    for (int i = 0; i < licking.Length; i++)
+                        raw = raw.Replace("licking " + licking[i] + ", ", "");
+
+                    raw = raw.Replace("licking, ", "");
+                    raw = raw.Replace("censored, ", "");
+                    raw = raw.Replace("tongue out, ", "");
+                }
+                if (checkBox3.Checked)
+                {
+                    raw = raw.Replace("large breasts", "medium breasts");
+                }
 
                 richTextBox2.Text = raw;
             }
@@ -80,6 +112,14 @@ namespace Horrible
         {
             richTextBox1.Text = "";
             richTextBox2.Text = "";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (Clipboard.GetText().Length > 0)
+                richTextBox1.Text = Clipboard.GetText();
+            else
+                richTextBox1.Text = "Nothing to Paste";
         }
     }
 }
