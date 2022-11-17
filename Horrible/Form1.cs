@@ -14,7 +14,7 @@ namespace Horrible
         private void button1_Click(object sender, EventArgs e)
         {
             string raw = richTextBox1.Text;
-            string[] media = { "twitter", "patreon", "weibo", "deviantart", "instagram", "tumblr", "pixiv", "facebook", "fanbox", "gumroad", "artstation", "lofter", "furaffinity", "youtube", "reddit", "naver", "twitch", "pawoo", "fantia", "plurk" };
+            string[] media = { "twitter", "patreon", "weibo", "deviantart", "instagram", "tumblr", "pixiv", "facebook", "fanbox", "gumroad", "artstation", "lofter", "furaffinity", "youtube", "reddit", "naver", "twitch", "pawoo", "fantia", "plurk", "artist" };
             string[] name = { "artist", "character", "copyright", "company", "group" };
             string[] earrings = { "hoop", "stud", "bell", "cherry", "crescent", "cross", "crystal", "flower", "food-themed", "heart", "jack-o'-lantern", "magatama", "orange-shaped", "pill", "pineapple", "planet", "pom pom", "potara", "shell", "skull", "snowflake", "spade", "star", "strawberry", "tassel", "yin yang", "adjusting", "multiple" };
             string[] colors = { "gold", "silver", "aqua", "black", "blue", "brown", "green", "grey", "orange", "pink", "purple", "red", "white", "yellow" };
@@ -125,6 +125,13 @@ namespace Horrible
                 richTextBox1.Text = Clipboard.GetText();
             else
                 richTextBox1.Text = "Nothing to Paste";
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+            string raw = richTextBox2.Text;
+            string[] total = raw.Split(' ');
+            label3.Text = ("Words: " + total.Length);
         }
     }
 }
